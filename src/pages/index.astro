@@ -1,0 +1,15 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ReactComponent from "../components/ReactComponent.jsx"
+---
+
+<Layout title="Astro Blog - Home Page">
+	<h1 class="green">Hello Astro</h1>
+	<ReactComponent client:idle />
+</Layout>
+
+<style>
+	.green {
+		color: green;
+	}
+</style>

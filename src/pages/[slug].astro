@@ -1,0 +1,27 @@
+---
+import Layout from "../layouts/Layout.astro";
+export async function getStaticPaths() {
+    const blogs = await Astro.glob("../blogs/*.md")
+    return blogs.map(blog => ({
+        params: {
+            slug: blog.frontmatter.slug
+        },
+        props: {
+            blog
+        }
+    }))
+}
+
+const { frontmatter, Content } = Astro.props.blog
+---
+
+<Layout>
+    <div class="blog-details">
+        <article>
+            <h2>{frontmatter.title}</h2>
+            <p>Written by {frontmatter.author} on {new Date(frontmatter.date).toLocaleDateString()}</p>
+            <br>
+            <Content />
+        </article>
+    </div>
+</Layout>

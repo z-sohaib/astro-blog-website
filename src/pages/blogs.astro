@@ -1,0 +1,18 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const blogs = await Astro.glob("../blogs/*.md")
+---
+
+<Layout title="Astro Blog - Blogs Page">
+    <div class="blog-list">
+        {blogs.map((blog) => (
+            <div class="blog-preview">
+                <a href={`/${blog.frontmatter.slug}`}>
+                    <h2>{blog.frontmatter.title}</h2>
+                    <p>{blog.frontmatter.excerpt}</p>    
+                </a>
+            </div>
+        ))}
+    </div>
+</Layout>
